@@ -14,12 +14,17 @@ void print_f(char * s){
 
 
 
-void main(void) {
 
+
+void main(void) {
   int i;
-  char c;
+  char ch;
+
+
+  format_zp();
+  acia_init();
   vdp_init();
-  vdp_screen_mode3();
+  //vdp_screen_mode3();
   //
   //print_f("Appartus VDP Demo");
   //str_a_to_x(0xAC);
@@ -28,11 +33,11 @@ void main(void) {
   //vdp_wr_addr(0x1010);
 while(1){
 
-
-for (i = 0; i<=0x0F; ++i){
-  c = acia_getc();
-  vdp_set_bgc(i);
-  vdp_fill(c);
+for (i = 2; i<=0x0F; ++i){
+  ch = acia_getc();
+  //vdp_set_bgc(i);
+  //vdp_fill(ch);
+  VDP_print_char(ch);
 }
 }
 }

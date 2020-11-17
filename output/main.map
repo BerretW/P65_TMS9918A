@@ -1,122 +1,131 @@
 Modules list:
 -------------
 main.o:
-    CODE              Offs=000000  Size=00004F  Align=00001  Fill=0000
+    CODE              Offs=000000  Size=000049  Align=00001  Fill=0000
 utils.o:
-    CODE              Offs=00004F  Size=000069  Align=00001  Fill=0000
+    CODE              Offs=000049  Size=00007F  Align=00001  Fill=0000
 acia.o:
-    CODE              Offs=0000B8  Size=000048  Align=00001  Fill=0000
+    CODE              Offs=0000C8  Size=000048  Align=00001  Fill=0000
     ZEROPAGE          Offs=000000  Size=000001  Align=00001  Fill=0000
 vdp_low.o:
-    CODE              Offs=000100  Size=00005C  Align=00001  Fill=0000
+    CODE              Offs=000110  Size=00005A  Align=00001  Fill=0000
     ZEROPAGE          Offs=000001  Size=000001  Align=00001  Fill=0000
 vdp.o:
-    CODE              Offs=00015C  Size=0000AC  Align=00001  Fill=0000
-    ZEROPAGE          Offs=000002  Size=000002  Align=00001  Fill=0000
+    CODE              Offs=00016A  Size=000608  Align=00001  Fill=0000
+    ZEROPAGE          Offs=000002  Size=00000F  Align=00001  Fill=0000
+vdp_graph.o:
+    CODE              Offs=000772  Size=000319  Align=00001  Fill=0000
+    DATA              Offs=000000  Size=000110  Align=00001  Fill=0000
 interrupts.o:
-    CODE              Offs=000208  Size=00000E  Align=00001  Fill=0000
+    CODE              Offs=000A8B  Size=000006  Align=00001  Fill=0000
 vectors.o:
     VECTORS           Offs=000000  Size=000006  Align=00001  Fill=0000
 ..\library\p65.lib(addeqsp.o):
-    CODE              Offs=000216  Size=000011  Align=00001  Fill=0000
-..\library\p65.lib(addysp.o):
-    CODE              Offs=000227  Size=00000E  Align=00001  Fill=0000
+    CODE              Offs=000A91  Size=000011  Align=00001  Fill=0000
 ..\library\p65.lib(condes.o):
-    CODE              Offs=000235  Size=00000C  Align=00001  Fill=0000
-    DATA              Offs=000000  Size=000025  Align=00001  Fill=0000
+    CODE              Offs=000AA2  Size=00000C  Align=00001  Fill=0000
+    DATA              Offs=000110  Size=000025  Align=00001  Fill=0000
     ONCE              Offs=000000  Size=00000C  Align=00001  Fill=0000
 ..\library\p65.lib(copydata.o):
-    CODE              Offs=000241  Size=00002D  Align=00001  Fill=0000
+    CODE              Offs=000AAE  Size=00002D  Align=00001  Fill=0000
 ..\library\p65.lib(crt0.o):
     STARTUP           Offs=000000  Size=00001C  Align=00001  Fill=0000
 ..\library\p65.lib(decsp3.o):
-    CODE              Offs=00026E  Size=00000D  Align=00001  Fill=0000
+    CODE              Offs=000ADB  Size=00000D  Align=00001  Fill=0000
 ..\library\p65.lib(incsp2.o):
-    CODE              Offs=00027B  Size=000015  Align=00001  Fill=0000
-..\library\p65.lib(incsp3.o):
-    CODE              Offs=000290  Size=000005  Align=00001  Fill=0000
+    CODE              Offs=000AE8  Size=000015  Align=00001  Fill=0000
 ..\library\p65.lib(ldaxsp.o):
-    CODE              Offs=000295  Size=000009  Align=00001  Fill=0000
-..\library\p65.lib(pusha.o):
-    CODE              Offs=00029E  Size=000016  Align=00001  Fill=0000
+    CODE              Offs=000AFD  Size=000009  Align=00001  Fill=0000
 ..\library\p65.lib(pushax.o):
-    CODE              Offs=0002B4  Size=00001A  Align=00001  Fill=0000
+    CODE              Offs=000B06  Size=00001A  Align=00001  Fill=0000
 ..\library\p65.lib(staxsp.o):
-    CODE              Offs=0002CE  Size=00000B  Align=00001  Fill=0000
+    CODE              Offs=000B20  Size=00000B  Align=00001  Fill=0000
 ..\library\p65.lib(zerobss.o):
-    CODE              Offs=0002D9  Size=000023  Align=00001  Fill=0000
+    CODE              Offs=000B2B  Size=000023  Align=00001  Fill=0000
 ..\library\p65.lib(zeropage.o):
-    ZEROPAGE          Offs=000004  Size=00001A  Align=00001  Fill=0000
+    ZEROPAGE          Offs=000011  Size=00001A  Align=00001  Fill=0000
 
 
 Segment list:
 -------------
 Name                   Start     End    Size  Align
 ----------------------------------------------------
-ZEROPAGE              000000  00001D  00001E  00001
-DATA                  000200  000224  000025  00001
-STARTUP               006025  006040  00001C  00001
-ONCE                  006041  00604C  00000C  00001
-CODE                  00604D  006348  0002FC  00001
+ZEROPAGE              000000  00002A  00002B  00001
+DATA                  000200  000334  000135  00001
+STARTUP               006135  006150  00001C  00001
+ONCE                  006151  00615C  00000C  00001
+CODE                  00615D  006CAA  000B4E  00001
 VECTORS               007FFA  007FFF  000006  00001
 
 
 Exports list by name:
 ---------------------
-__BSS_RUN__               000225 RLA    __BSS_SIZE__              000000 REA    
-__CONSTRUCTOR_COUNT__     000000 REA    __CONSTRUCTOR_TABLE__     006041 RLA    
-__DATA_LOAD__             006000 RLA    __DATA_RUN__              000200 RLA    
-__DATA_SIZE__             000025 REA    __DESTRUCTOR_COUNT__      000000 REA    
-__DESTRUCTOR_TABLE__      006041 RLA    __RAM_SIZE__              005DFF REA    
-__RAM_START__             000200 RLA    __STARTUP__               000001 REA    
-_acia_getc                006142 RLA    _acia_put_newline         00613A RLA    
-_acia_putc                006112 RLA    _acia_puts                00611F RLA    
-_init                     006025 RLA    _irq_int                  006257 RLA    
-_main                     00605C RLA    _nmi_int                  006255 RLA    
-_vdp_fill                 006240 RLA    _vdp_init                 0061A9 RLA    
-_vdp_screen_mode3         00621B RLA    _vdp_set_bgc              0061C5 RLA    
-_vdp_wr_addr              006192 RLA    _vdp_wr_reg               00614D RLA    
-_vdp_wr_vram_data         0061A1 RLA    addeqysp                  006265 RLA    
-addysp                    006275 RLA    copydata                  00628E RLA    
-decsp3                    0062BB RLA    donelib                   006282 RLA    
-incsp2                    0062CF RLA    incsp3                    0062DD RLA    
-initlib                   006041 RLA    ldax0sp                   0062E2 RLA    
-ldaxysp                   0062E4 RLA    ptr1                      00000C RLZ    
-ptr2                      00000E RLZ    pusha                     0062EF RLA    
-pushax                    006305 RLA    sp                        000004 RLZ    
-staxysp                   00631D RLA    tmp1                      000014 RLZ    
-zerobss                   006326 RLA    
+_VDP_print_char           0066DE RLA    __BSS_RUN__               000335 RLA    
+__BSS_SIZE__              000000 REA    __CONSTRUCTOR_COUNT__     000000 REA    
+__CONSTRUCTOR_TABLE__     006151 RLA    __DATA_LOAD__             006000 RLA    
+__DATA_RUN__              000200 RLA    __DATA_SIZE__             000135 REA    
+__DESTRUCTOR_COUNT__      000000 REA    __DESTRUCTOR_TABLE__      006151 RLA    
+__RAM_SIZE__              005DFF REA    __RAM_START__             000200 RLA    
+__STARTUP__               000001 REA    _acia_getc                006262 RLA    
+_acia_init                006225 RLA    _acia_put_newline         00625A RLA    
+_acia_puts                00623F RLA    _format_zp                0061A6 RLA    
+_init                     006135 RLA    _irq_int                  006BEA RLA    
+_main                     00616C RLA    _nmi_int                  006BE8 RLA    
+_vdp_init                 0066C7 RLA    _vdp_rd_addr              006298 RLA    
+_vdp_rd_vram              0062AA RLA    _vdp_wr_addr              006289 RLA    
+_vdp_wr_reg               00626D RLA    _vdp_wr_vram              0062A2 RLA    
+addeqysp                  006BF0 RLA    copydata                  006C0B RLA    
+decsp3                    006C38 RLA    donelib                   006BFF RLA    
+gr_init_screen            006918 RLA    gr_put_byte               006B39 RLA    
+gr_set_cur                0069C4 RLA    incsp2                    006C4C RLA    
+init_vdp_txt              006806 RLA    initlib                   006151 RLA    
+ldax0sp                   006C5A RLA    ldaxysp                   006C5C RLA    
+ptr1                      000019 RLZ    ptr2                      00001B RLZ    
+pushax                    006C67 RLA    sp                        000011 RLZ    
+staxysp                   006C7F RLA    tmp1                      000021 RLZ    
+tmp2                      000022 RLZ    tmp3                      000023 RLZ    
+tmp4                      000024 RLZ    tmpstack                  000000 RLZ    
+vdp_addr_nme              000005 RLZ    vdp_delay                 000001 RLZ    
+vdp_peek                  0062BE RLA    vdp_poke                  0062B2 RLA    
+zerobss                   006C88 RLA    
 
 
 Exports list by value:
 ----------------------
+tmpstack                  000000 RLZ    __CONSTRUCTOR_COUNT__     000000 REA    
 __BSS_SIZE__              000000 REA    __DESTRUCTOR_COUNT__      000000 REA    
-__CONSTRUCTOR_COUNT__     000000 REA    __STARTUP__               000001 REA    
-sp                        000004 RLZ    ptr1                      00000C RLZ    
-ptr2                      00000E RLZ    tmp1                      000014 RLZ    
-__DATA_SIZE__             000025 REA    __DATA_RUN__              000200 RLA    
-__RAM_START__             000200 RLA    __BSS_RUN__               000225 RLA    
+vdp_delay                 000001 RLZ    __STARTUP__               000001 REA    
+vdp_addr_nme              000005 RLZ    sp                        000011 RLZ    
+ptr1                      000019 RLZ    ptr2                      00001B RLZ    
+tmp1                      000021 RLZ    tmp2                      000022 RLZ    
+tmp3                      000023 RLZ    tmp4                      000024 RLZ    
+__DATA_SIZE__             000135 REA    __DATA_RUN__              000200 RLA    
+__RAM_START__             000200 RLA    __BSS_RUN__               000335 RLA    
 __RAM_SIZE__              005DFF REA    __DATA_LOAD__             006000 RLA    
-_init                     006025 RLA    initlib                   006041 RLA    
-__DESTRUCTOR_TABLE__      006041 RLA    __CONSTRUCTOR_TABLE__     006041 RLA    
-_main                     00605C RLA    _acia_putc                006112 RLA    
-_acia_puts                00611F RLA    _acia_put_newline         00613A RLA    
-_acia_getc                006142 RLA    _vdp_wr_reg               00614D RLA    
-_vdp_wr_addr              006192 RLA    _vdp_wr_vram_data         0061A1 RLA    
-_vdp_init                 0061A9 RLA    _vdp_set_bgc              0061C5 RLA    
-_vdp_screen_mode3         00621B RLA    _vdp_fill                 006240 RLA    
-_nmi_int                  006255 RLA    _irq_int                  006257 RLA    
-addeqysp                  006265 RLA    addysp                    006275 RLA    
-donelib                   006282 RLA    copydata                  00628E RLA    
-decsp3                    0062BB RLA    incsp2                    0062CF RLA    
-incsp3                    0062DD RLA    ldax0sp                   0062E2 RLA    
-ldaxysp                   0062E4 RLA    pusha                     0062EF RLA    
-pushax                    006305 RLA    staxysp                   00631D RLA    
-zerobss                   006326 RLA    
+_init                     006135 RLA    __CONSTRUCTOR_TABLE__     006151 RLA    
+initlib                   006151 RLA    __DESTRUCTOR_TABLE__      006151 RLA    
+_main                     00616C RLA    _format_zp                0061A6 RLA    
+_acia_init                006225 RLA    _acia_puts                00623F RLA    
+_acia_put_newline         00625A RLA    _acia_getc                006262 RLA    
+_vdp_wr_reg               00626D RLA    _vdp_wr_addr              006289 RLA    
+_vdp_rd_addr              006298 RLA    _vdp_wr_vram              0062A2 RLA    
+_vdp_rd_vram              0062AA RLA    vdp_poke                  0062B2 RLA    
+vdp_peek                  0062BE RLA    _vdp_init                 0066C7 RLA    
+_VDP_print_char           0066DE RLA    init_vdp_txt              006806 RLA    
+gr_init_screen            006918 RLA    gr_set_cur                0069C4 RLA    
+gr_put_byte               006B39 RLA    _nmi_int                  006BE8 RLA    
+_irq_int                  006BEA RLA    addeqysp                  006BF0 RLA    
+donelib                   006BFF RLA    copydata                  006C0B RLA    
+decsp3                    006C38 RLA    incsp2                    006C4C RLA    
+ldax0sp                   006C5A RLA    ldaxysp                   006C5C RLA    
+pushax                    006C67 RLA    staxysp                   006C7F RLA    
+zerobss                   006C88 RLA    
 
 
 Imports list:
 -------------
+_VDP_print_char (vdp.o):
+    main.o                    main.s(20)
 __BSS_RUN__ ([linker generated]):
     zerobss.o                 common/zerobss.s(8)
 __BSS_SIZE__ ([linker generated]):
@@ -142,14 +151,16 @@ __RAM_START__ ([linker generated]):
 __STARTUP__ (crt0.o):
     main.o                    main.s(13)
 _acia_getc (acia.o):
-    utils.o                   utils.asm(99)
-    main.o                    main.s(16)
-_acia_put_newline (acia.o):
-    main.o                    main.s(15)
-_acia_putc (acia.o):
-    interrupts.o              interrupts.asm(11)
-_acia_puts (acia.o):
+    utils.o                   utils.asm(115)
+    main.o                    main.s(17)
+_acia_init (acia.o):
     main.o                    main.s(14)
+_acia_put_newline (acia.o):
+    main.o                    main.s(16)
+_acia_puts (acia.o):
+    main.o                    main.s(15)
+_format_zp (utils.o):
+    main.o                    main.s(18)
 _init (crt0.o):
     vectors.o                 vectors.asm(7)
 _irq_int (interrupts.o):
@@ -158,67 +169,87 @@ _main (main.o):
     crt0.o                    .\src\crt0.s(8)
 _nmi_int (interrupts.o):
     vectors.o                 vectors.asm(8)
-_vdp_fill (vdp.o):
-    main.o                    main.s(20)
 _vdp_init (vdp.o):
-    main.o                    main.s(17)
-_vdp_screen_mode3 (vdp.o):
     main.o                    main.s(19)
-_vdp_set_bgc (vdp.o):
-    main.o                    main.s(18)
+_vdp_rd_addr (vdp_low.o):
+    vdp_graph.o               vdp_graph.asm(625)
+_vdp_rd_vram (vdp_low.o):
+    vdp_graph.o               vdp_graph.asm(625)
 _vdp_wr_addr (vdp_low.o):
-    vdp.o                     vdp.asm(138)
+    vdp_graph.o               vdp_graph.asm(625)
+    vdp.o                     vdp.asm(512)
 _vdp_wr_reg (vdp_low.o):
-    vdp.o                     vdp.asm(138)
-_vdp_wr_vram_data (vdp_low.o):
-    vdp.o                     vdp.asm(138)
+    vdp.o                     vdp.asm(512)
+_vdp_wr_vram (vdp_low.o):
+    vdp_graph.o               vdp_graph.asm(625)
+    vdp.o                     vdp.asm(512)
 addeqysp (addeqsp.o):
-    main.o                    main.s(84)
-addysp (addysp.o):
-    incsp3.o                  runtime/incsp3.s(8)
+    main.o                    main.s(80)
 copydata (copydata.o):
     crt0.o                    .\src\crt0.s(13)
 decsp3 (decsp3.o):
-    main.o                    main.s(84)
+    main.o                    main.s(80)
 donelib (condes.o):
     crt0.o                    .\src\crt0.s(13)
+gr_init_screen (vdp_graph.o):
+    vdp.o                     vdp.asm(512)
+gr_put_byte (vdp_graph.o):
+    vdp.o                     vdp.asm(512)
+gr_set_cur (vdp_graph.o):
+    vdp.o                     vdp.asm(512)
 incsp2 (incsp2.o):
-    main.o                    main.s(84)
-incsp3 (incsp3.o):
-    vdp_low.o                 vdp_low.asm(128)
+    main.o                    main.s(80)
+init_vdp_txt (vdp.o):
+    vdp_graph.o               vdp_graph.asm(625)
 initlib (condes.o):
     crt0.o                    .\src\crt0.s(13)
 ldax0sp (ldaxsp.o):
-    main.o                    main.s(84)
+    main.o                    main.s(80)
 ldaxysp (ldaxsp.o):
-    main.o                    main.s(84)
+    main.o                    main.s(80)
 ptr1 (zeropage.o):
     copydata.o                common/copydata.s(9)
     zerobss.o                 common/zerobss.s(9)
+    vdp_graph.o               vdp_graph.asm(13)
     acia.o                    acia.asm(9)
     utils.o                   utils.asm(12)
 ptr2 (zeropage.o):
     copydata.o                common/copydata.s(9)
-pusha (pusha.o):
-    vdp_low.o                 vdp_low.asm(128)
 pushax (pushax.o):
-    main.o                    main.s(84)
+    main.o                    main.s(80)
 sp (zeropage.o):
-    addysp.o                  runtime/addysp.s(8)
     staxsp.o                  runtime/staxsp.s(8)
     pushax.o                  runtime/pushax.s(8)
-    pusha.o                   runtime/pusha.s(8)
     ldaxsp.o                  runtime/ldaxsp.s(8)
     incsp2.o                  runtime/incsp2.s(8)
     decsp3.o                  runtime/decsp3.s(8)
     crt0.o                    C:\cc65\asminc/zeropage.inc(11)
     addeqsp.o                 runtime/addeqsp.s(8)
-    vdp_low.o                 vdp_low.asm(21)
     main.o                    main.s(10)
 staxysp (staxsp.o):
-    main.o                    main.s(84)
+    main.o                    main.s(80)
 tmp1 (zeropage.o):
     copydata.o                common/copydata.s(9)
+    vdp_graph.o               vdp_graph.asm(13)
+    vdp.o                     vdp.asm(25)
+tmp2 (zeropage.o):
+    vdp_graph.o               vdp_graph.asm(13)
+    vdp.o                     vdp.asm(25)
+tmp3 (zeropage.o):
+    vdp_graph.o               vdp_graph.asm(13)
+    vdp.o                     vdp.asm(25)
+tmp4 (zeropage.o):
+    vdp_graph.o               vdp_graph.asm(13)
+tmpstack (acia.o):
+    vdp_graph.o               vdp_graph.asm(12)
+vdp_addr_nme (vdp.o):
+    vdp_graph.o               vdp_graph.asm(12)
+vdp_delay (vdp_low.o):
+    vdp.o                     vdp.asm(24)
+vdp_peek (vdp_low.o):
+    vdp_graph.o               vdp_graph.asm(625)
+vdp_poke (vdp_low.o):
+    vdp_graph.o               vdp_graph.asm(625)
 zerobss (zerobss.o):
     crt0.o                    .\src\crt0.s(13)
 

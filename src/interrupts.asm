@@ -23,11 +23,7 @@ _nmi_int:   CLI
 
 ; ---------------------------------------------------------------------------
 ; Maskable interrupt (IRQ) service routine
-_irq_int:   SEI
-            PHA
-            LDA #41
-            jsr _acia_putc
-            PLA
+_irq_int:   
             RTI
 
 ;_irq_int1:  PHX                    ; Save X register contents to stack

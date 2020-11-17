@@ -18,9 +18,16 @@
 .export _write_to_BANK
 .export _switch_bank
 .export _str_a_to_x
-
+.export _format_zp
 .code
 
+_format_zp:	LDX #$FF
+						LDA #$00
+
+@clr:				STA $0,X
+						DEX
+						BNE @clr
+						RTS
 
 _format_bank:     	LDY #0
 					LDA #<(BANKDISK)
@@ -97,3 +104,12 @@ skip_a_f_2:	clc					; No error
 						STA ACIA_DATA
 						STX ACIA_DATA
 						rts					; A high nibble
+
+_delay:					LDX #$1
+_delay1:				DEX
+                BNE _delay1
+                RTS
+_delay2:				LDX #$FF
+_delay3:				DEX
+                BNE _delay3
+                RTS

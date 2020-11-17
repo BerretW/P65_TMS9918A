@@ -149,7 +149,20 @@ VDP_SPRMAG    = %00000001
 VDP_EXTVID    = %00000001 ;at reg 0
 VDP_GMODE2    = %00000010 ;at reg 0
 
+;UTF special codes
 
+UTF_ETX		= $03			; Break character
+UTF_BEL		= $07
+CRSR_LEFT	= $08
+CRSR_RIGHT	= $09
+CRSR_DOWN	= $0a
+CRSR_UP		= $0b
+UTF_ACK		= $06			; Used for the copy key in this implementation
+UTF_FF		= $0c
+UTF_CR		= $0d
+UTF_BRK		= $1a			; Debug - drop in to monitor
+UTF_DEL		= $7f
+UTF_SPECIAL = $20
 
 ;SPI registerss
 

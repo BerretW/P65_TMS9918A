@@ -11,13 +11,13 @@
 	.importzp	tmp1, tmp2, tmp3, tmp4, ptr1, ptr2, ptr3, ptr4
 	.macpack	longbranch
 	.forceimport	__STARTUP__
+	.import		_acia_init
 	.import		_acia_puts
 	.import		_acia_put_newline
 	.import		_acia_getc
+	.import		_format_zp
 	.import		_vdp_init
-	.import		_vdp_set_bgc
-	.import		_vdp_screen_mode3
-	.import		_vdp_fill
+	.import		_VDP_print_char
 	.export		_print_f
 	.export		_main
 
@@ -50,11 +50,12 @@
 .segment	"CODE"
 
 	jsr     decsp3
+	jsr     _format_zp
+	jsr     _acia_init
 	jsr     _vdp_init
-	jsr     _vdp_screen_mode3
 	ldx     #$00
-	txa
-L000B:	ldy     #$01
+L000A:	lda     #$02
+	ldy     #$01
 	jsr     staxysp
 L0005:	ldy     #$02
 	jsr     ldaxysp
@@ -64,16 +65,11 @@ L0005:	ldy     #$02
 	bvc     L0009
 	eor     #$80
 L0009:	asl     a
-	lda     #$00
-	tax
-	bcc     L000B
+	ldx     #$00
+	bcc     L000A
 	jsr     _acia_getc
 	sta     (sp)
-	ldy     #$01
-	lda     (sp),y
-	jsr     _vdp_set_bgc
-	lda     (sp)
-	jsr     _vdp_fill
+	jsr     _VDP_print_char
 	ldy     #$01
 	ldx     #$00
 	tya
