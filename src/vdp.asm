@@ -5,15 +5,10 @@
 
 
 .zeropage
+_vdp_reg0:			.res 1
+_vdp_reg1:			.res 1
+.globalzp _vdp_reg0, _vdp_reg1
 
-vdp_reg0:			.res 1
-vdp_reg1:			.res 1
-vdp_reg2:			.res 1
-vdp_reg3:			.res 1
-vdp_reg4:			.res 1
-vdp_reg5:			.res 1
-vdp_reg6:			.res 1
-vdp_reg7:			.res 1
 .smart		on
 .autoimport	on
 .case		on
@@ -22,28 +17,104 @@ vdp_reg7:			.res 1
 .importzp	tmp1, tmp2, tmp3, tmp4, ptr1, ptr2, ptr3, ptr4
 .macpack	longbranch
 
-.globalzp vdp_reg0,vdp_reg1,vdp_reg2,vdp_reg3,vdp_reg4,vdp_reg5,vdp_reg6,vdp_reg7
 
 .export _vdp_init
 .export _vdp_fill_vram
 .export _vdp_fill
+.export _vdp_screen_mode0, _vdp_screen_mode1, _vdp_screen_mode2, _vdp_screen_mode3,_vdp_set_bgc
 
 .code
 
 _vdp_init:  JSR _vdp_clr_vram
             LDA #0
-            STA vdp_reg0
-            STA vdp_reg1
-            STA vdp_reg2
-            STA vdp_reg3
-            STA vdp_reg4
-            STA vdp_reg5
-            STA vdp_reg6
-            STA vdp_reg7
+            STA _vdp_reg0
+            STA _vdp_reg1
 
+
+            LDX #$0
+            STX _vdp_reg0
+            LDA #$0
+            JSR _vdp_wr_reg
+
+            LDX #(VDP_16K | VDP_SBLANK)
+            STX _vdp_reg1
+            LDA #$1
+            JSR _vdp_wr_reg
             RTS
 
-_vdp_screenmode:
+
+_vdp_set_bgc:       TAX
+                    LDA #$7
+                    JSR _vdp_wr_reg
+                    RTS
+
+_vdp_screen_mode0:	LDA _vdp_reg0
+                    AND #%11111101
+                    STA _vdp_reg0
+
+					          TAX
+          					LDA #$0
+          					JSR _vdp_wr_reg
+
+          					LDA _vdp_reg1
+          					AND #%11100111
+          					STA _vdp_reg1
+
+          				  TAX
+          					LDA #$1
+          					JSR _vdp_wr_reg
+          					RTS
+
+_vdp_screen_mode1:	LDA _vdp_reg0
+                    AND #%11111101
+                    STA _vdp_reg0
+          					TAX
+          					LDA #$0
+          					JSR _vdp_wr_reg
+
+          					LDA _vdp_reg1
+          					AND #%11100111
+          					ORA #VDP_GMODE1
+          					STA _vdp_reg1
+
+          					TAX
+          					LDA #$1
+          					JSR _vdp_wr_reg
+          					RTS
+
+_vdp_screen_mode2:	LDA _vdp_reg0
+                    AND #%11111101
+                    ORA #VDP_GMODE2
+                    STA _vdp_reg0
+          					TAX
+          					LDA #$0
+          					JSR _vdp_wr_reg
+
+          					LDA _vdp_reg1
+          					AND #%11100111
+          					STA _vdp_reg1
+
+          					TAX
+          					LDA #$1
+          					JSR _vdp_wr_reg
+          					RTS
+
+_vdp_screen_mode3:	LDA _vdp_reg0
+                    AND #%11111101
+                    STA _vdp_reg0
+          					TAX
+          					LDA #$0
+          					JSR _vdp_wr_reg
+
+          					LDA _vdp_reg1
+          					AND #%11100111
+          					ORA #VDP_GMODE3
+          					STA _vdp_reg1
+
+          					TAX
+          					LDA #$1
+          					JSR _vdp_wr_reg
+          					RTS
 
 
 _vdp_fill_vram: JSR _vdp_wr_vram_data

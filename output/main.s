@@ -14,12 +14,11 @@
 	.import		_acia_puts
 	.import		_acia_put_newline
 	.import		_acia_getc
-	.import		_vdp_wr_reg
 	.import		_vdp_init
+	.import		_vdp_set_bgc
+	.import		_vdp_screen_mode3
 	.import		_vdp_fill
 	.export		_print_f
-	.export		_vdp_set_bg
-	.export		_nasobek
 	.export		_main
 
 ; ---------------------------------------------------------------
@@ -41,43 +40,6 @@
 .endproc
 
 ; ---------------------------------------------------------------
-; void __near__ vdp_set_bg (char color_id)
-; ---------------------------------------------------------------
-
-.segment	"CODE"
-
-.proc	_vdp_set_bg: near
-
-.segment	"CODE"
-
-	jsr     pusha
-	lda     #$07
-	jsr     pusha
-	ldy     #$01
-	lda     (sp),y
-	jsr     _vdp_wr_reg
-	jmp     incsp1
-
-.endproc
-
-; ---------------------------------------------------------------
-; int __near__ nasobek (int cislo)
-; ---------------------------------------------------------------
-
-.segment	"CODE"
-
-.proc	_nasobek: near
-
-.segment	"CODE"
-
-	jsr     pushax
-	jsr     ldax0sp
-	jsr     aslax2
-	jmp     incsp2
-
-.endproc
-
-; ---------------------------------------------------------------
 ; void __near__ main (void)
 ; ---------------------------------------------------------------
 
@@ -89,10 +51,7 @@
 
 	jsr     decsp3
 	jsr     _vdp_init
-	lda     #$01
-	jsr     pusha
-	lda     #$CF
-	jsr     _vdp_wr_reg
+	jsr     _vdp_screen_mode3
 	ldx     #$00
 	txa
 L000B:	ldy     #$01
@@ -112,7 +71,7 @@ L0009:	asl     a
 	sta     (sp)
 	ldy     #$01
 	lda     (sp),y
-	jsr     _vdp_set_bg
+	jsr     _vdp_set_bgc
 	lda     (sp)
 	jsr     _vdp_fill
 	ldy     #$01

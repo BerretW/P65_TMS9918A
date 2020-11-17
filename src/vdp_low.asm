@@ -29,26 +29,23 @@ radek:			.res 1
 .code
 
 
-;****************************************
-;* _vdp_wr_reg
-;* Write to Register A the value X
-;* Input : A - Register Number, X - Data
-;* Output : None
-;* Regs affected : P
-;****************************************
-_vdp_wr_reg:
-	sta VDP_MODE1
-; Extra nop for fast CPU
-	nop
-	nop
-	nop
-	nop
-	LDY #$00
-	LDA (sp),y
-	ora #$80
-	sta VDP_MODE1
-	eor #$80
-	jmp incsp1
+
+	;****************************************
+	;* vdp_wr_reg
+	;* Write to Register A the value X
+	;* Input : A - Register Number, X - Data
+	;* Output : None
+	;* Regs affected : P
+	;****************************************
+	_vdp_wr_reg:
+		stx VDP_MODE1
+		nop; Extra nop for fast CPU
+		nop
+		nop
+		ora #$80
+		sta VDP_MODE1
+		eor #$80
+		rts
 
 _vdp_rd_stat_reg:
 		LDA VDP_MODE1
