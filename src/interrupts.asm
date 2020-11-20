@@ -1,4 +1,4 @@
-
+.include "io.inc65"
 ; ---------------------------------------------------------------------------
 ; interrupt.s
 ; ---------------------------------------------------------------------------
@@ -18,12 +18,16 @@
 ; ---------------------------------------------------------------------------
 ; Non-maskable interrupt (NMI) service routine
 
-_nmi_int:   CLI
+_nmi_int:   SEI
             RTI                    ; Return from all NMI interrupts
 
 ; ---------------------------------------------------------------------------
 ; Maskable interrupt (IRQ) service routine
-_irq_int:   
+_irq_int:   PHA;
+            LDA IRQ_DATA
+            JSR _acia_putc
+            PLA
+
             RTI
 
 ;_irq_int1:  PHX                    ; Save X register contents to stack
@@ -35,12 +39,6 @@ _irq_int:
 ;           AND #$10               ; Isolate B status bit
 ;           BNE break              ; If B = 1, BRK detected
 
-; ---------------------------------------------------------------------------
-; IRQ detected, return
-
-irq:       PLA                    ; Restore accumulator contents
-           PLX                    ; Restore X register contents
-           RTI                    ; Return from all IRQ interrupts
 
 ; ---------------------------------------------------------------------------
 ; BRK detected, stop

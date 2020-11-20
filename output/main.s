@@ -14,7 +14,7 @@
 	.import		_acia_init
 	.import		_acia_puts
 	.import		_acia_put_newline
-	.import		_acia_getc
+	.import		_IRQ_enable
 	.import		_format_zp
 	.import		_vdp_init
 	.import		_VDP_print_char
@@ -50,31 +50,13 @@
 .segment	"CODE"
 
 	jsr     decsp3
+	jsr     _IRQ_enable
 	jsr     _format_zp
 	jsr     _acia_init
 	jsr     _vdp_init
-	ldx     #$00
-L000A:	lda     #$02
-	ldy     #$01
-	jsr     staxysp
-L0005:	ldy     #$02
-	jsr     ldaxysp
-	cmp     #$10
-	txa
-	sbc     #$00
-	bvc     L0009
-	eor     #$80
-L0009:	asl     a
-	ldx     #$00
-	bcc     L000A
-	jsr     _acia_getc
-	sta     (sp)
+L0002:	lda     (sp)
 	jsr     _VDP_print_char
-	ldy     #$01
-	ldx     #$00
-	tya
-	jsr     addeqysp
-	bra     L0005
+	bra     L0002
 
 .endproc
 

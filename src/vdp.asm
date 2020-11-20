@@ -32,7 +32,8 @@ vdp_bord_col: .res 2
 .code
 ;_init:
 
-_vdp_init:          JSR clear_vram
+_vdp_init:          SEI
+                    JSR clear_vram
                     LDA #0
                     JSR gr_init_screen
 

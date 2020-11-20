@@ -17,10 +17,12 @@ void print_f(char * s){
 
 
 void main(void) {
+
   int i;
   char ch;
 
 
+  IRQ_enable();
   format_zp();
   acia_init();
   vdp_init();
@@ -33,11 +35,7 @@ void main(void) {
   //vdp_wr_addr(0x1010);
 while(1){
 
-for (i = 2; i<=0x0F; ++i){
-  ch = acia_getc();
-  //vdp_set_bgc(i);
-  //vdp_fill(ch);
   VDP_print_char(ch);
-}
+
 }
 }

@@ -19,7 +19,16 @@
 .export _switch_bank
 .export _str_a_to_x
 .export _format_zp
+.export _IRQ_enable, _IRQ_disable
 .code
+
+
+_IRQ_enable:
+							CLI
+							RTS
+_IRQ_disable:
+							SEI
+							RTS
 
 _format_zp:	LDX #$FF
 						LDA #$00
