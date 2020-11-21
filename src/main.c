@@ -18,10 +18,6 @@ void print_f(char * s){
 
 void main(void) {
 
-  int i;
-  char ch;
-
-
   IRQ_enable();
   format_zp();
   acia_init();
@@ -35,7 +31,7 @@ void main(void) {
   //vdp_wr_addr(0x1010);
 while(1){
 
-  VDP_print_char(ch);
+  VDP_print_char(acia_getc());
 
 }
 }

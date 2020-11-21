@@ -14,6 +14,7 @@
 	.import		_acia_init
 	.import		_acia_puts
 	.import		_acia_put_newline
+	.import		_acia_getc
 	.import		_IRQ_enable
 	.import		_format_zp
 	.import		_vdp_init
@@ -49,12 +50,11 @@
 
 .segment	"CODE"
 
-	jsr     decsp3
 	jsr     _IRQ_enable
 	jsr     _format_zp
 	jsr     _acia_init
 	jsr     _vdp_init
-L0002:	lda     (sp)
+L0002:	jsr     _acia_getc
 	jsr     _VDP_print_char
 	bra     L0002
 
